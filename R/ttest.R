@@ -42,7 +42,7 @@ ttest <- function(data, groupVar, ...) {
                 ", Group 2: ", test.groups[2],
                 sep = ""))
 
-  tData %>%
+  data %>%
     select(!! groupVar, !!! testVars) %>%
     gather(variable, value, -!! groupVar) %>%
     group_by(!! groupVar, variable) %>%
