@@ -17,6 +17,8 @@ This a collection of convenience functions for data handling, plotting, and anal
 
 ## Installation
 
+Install from GitHub:
+
 ``` r
 install.packages("devtools")
 devtools::install_github("joon-e/jutilities")
