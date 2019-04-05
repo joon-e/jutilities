@@ -61,5 +61,6 @@ ttest <- function(data, groupVar, ...) {
       p = t.test(unlist(gr1), unlist(gr2))$p.value,
       d = cohensD(M1, M2, SD1, SD2)
     ) %>%
-    select(-2, -3)
+    select(-2, -3) %>%
+    ungroup()
 }
