@@ -11,7 +11,6 @@
 #' @param testVar The variable to be tested.
 #'
 #' @return A coders x codings matrix.
-
 irr.matrix = function(data, unitVar, coderVar, testVar) {
 
   unitVar = enquo(unitVar)
@@ -40,7 +39,6 @@ irr.matrix = function(data, unitVar, coderVar, testVar) {
 #' "interval" or "ratio"). Defaults to "nominal".
 #'
 #' @return A tibble containing various interreliability measures.
-#'
 irr.test = function(data, unitVar, coderVar, testVar, method = "nominal") {
 
   unitVar = enquo(unitVar)
@@ -85,7 +83,6 @@ irr.test = function(data, unitVar, coderVar, testVar, method = "nominal") {
 #'
 #' @return A tibble containing various interreliability measures and statistics
 #' for the test variables.
-
 irr = function(data, unitVar, coderVar, ..., method = "nominal") {
 
   unitVar <- enquo(unitVar)
@@ -93,6 +90,10 @@ irr = function(data, unitVar, coderVar, ..., method = "nominal") {
 
   df <- NULL
   i <- 1
+
+  if (length(method) != 1 && length(quos(...)) != length(method)) {
+    stop("Please provide either one method or a vector of methods the length of the amount of test variables.")
+  }
 
   for (testVar in quos(...)) {
 
