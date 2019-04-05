@@ -1,0 +1,17 @@
+Package: jutilities
+Type: Package
+Title: jutilities: A Collection of Convenience Functions
+Version: 0.1.0
+Author: Julian Unkel
+Maintainer: Julian Unkel <julian.unkel@gmail.com>
+Description: A collection of convenience and wrapper functions, helping with
+    data handling, plotting, and analysis within the tidyverse syntax.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Imports:
+  dplyr,
+  ggplot2,
+  irr,
+  tidyr
+RoxygenNote: 6.1.1
