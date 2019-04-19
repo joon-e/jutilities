@@ -19,10 +19,12 @@ A tibble containing descriptive statistics for the selected
     variables
 }
 \description{
-Descriptively describe one or more continous variable by several measures of
-central tendency and variability.
+Descriptively describe variables by several measures of
+central tendency and variability. If no variables are specified,
+all numeric (integer or double) variables are described.
 }
 \examples{
 describe(mtcars, disp, hp, mpg)
+  describe(iris)
 
 }
