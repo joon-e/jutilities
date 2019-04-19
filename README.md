@@ -9,6 +9,8 @@ wrappers for tasks I perform regularly (e. g., describe variables, add
 mean indices) and wanted to integrate them into `%>%` pipes with just
 one line.
 
+This is all very much work in progress.
+
 ## Installation
 
 Install from GitHub:
