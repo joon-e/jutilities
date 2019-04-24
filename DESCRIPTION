@@ -10,8 +10,10 @@ License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Imports:
+  broom,
   dplyr,
   ggplot2,
+  Hmisc,
   irr,
   tidyr
 RoxygenNote: 6.1.1

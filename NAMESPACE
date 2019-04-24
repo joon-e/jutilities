@@ -2,6 +2,9 @@
 
 export(add_index)
 export(add_label)
+export(cat_ftable)
+export(cat_xtable)
+export(chisq_test)
 export(color_scale)
 export(describe)
 export(describe_groups)
