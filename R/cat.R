@@ -1,6 +1,6 @@
 #' Compute frequency table
 #'
-#' Computes frequency table for one categorial variable, including relative,
+#' Computes frequency table for one categorical variable, including relative,
 #' valid, and cumulative frequencies.
 #'
 #' @import dplyr

@@ -15,6 +15,6 @@ cat_ftable(data, var)
 A tibble of the frequency table
 }
 \description{
-Computes frequency table for one categorial variable, including relative,
+Computes frequency table for one categorical variable, including relative,
 valid, and cumulative frequencies.
 }
