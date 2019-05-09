@@ -19,8 +19,8 @@ summary <- function(var, na.rm) {
     Max = quo(max(!! var, na.rm = !! na.rm)),
     Range = quo(Max - Min),
     Mdn = quo(median(!! var, na.rm = !! na.rm)),
-    Q2.5 = quo(quantile(!! var, .025, na.rm = !! na.rm)),
-    Q97.5 = quo(quantile(!! var, .975, na.rm = !! na.rm))
+    Q25 = quo(quantile(!! var, .25, na.rm = !! na.rm)),
+    Q75 = quo(quantile(!! var, .75, na.rm = !! na.rm))
   )
   return(s)
 }
