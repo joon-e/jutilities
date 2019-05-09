@@ -8,7 +8,8 @@ output: github_document
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  out.width = "100%"
+  out.width = "100%",
+  fig.path = "man/figures/"
 )
 ```
 # jutilities
@@ -25,3 +26,118 @@ Install from GitHub:
 install.packages("devtools")
 devtools::install_github("joon-e/jutilities")
 ```
+
+## Instructions
+
+`jutilities` are to be used with the `tidyverse`. Most functions will return a tibble and can thus be easily integrated into `%>%` pipes.
+
+```{r message=F, warning=F}
+library(tidyverse)
+library(jutilities)
+```
+
+### Describe continous variables
+
+`describe()` computes several measures of central tendency and variability for all specified variables:
+
+```{r}
+diamonds %>% 
+  describe(x, y, z)
+```
+
+If no variables are specified, all numeric variables are described:
+
+```{r}
+diamonds %>% 
+  describe()
+```
+
+`describe_groups()` outputs the same statistics for one variable, grouped by one or more grouping variables.
+
+```{r}
+diamonds %>% 
+  describe_groups(price, cut, color)
+```
+ 
+### Describe categorical variables
+
+`cat_ftable()` outputs a frequency table including relative, valid, and cumulative frequencies for one categorical variable.
+
+```{r}
+diamonds %>% 
+  cat_ftable(cut)
+```
+
+`cat_xtable` outputs contigency tables for one column variable and one or more row variables:
+
+```{r}
+diamonds %>% 
+  cat_xtable(cut, color, clarity)
+```
+
+Setting the argument `percentages = TRUE` changes the output to relative frequencies:
+
+```{r}
+diamonds %>% 
+  cat_xtable(cut, color, percentages = TRUE)
+```
+
+A Chi² test can be optionally computed by setting the argument `chisq = TRUE`. Test results will be displayed in a console message:
+
+```{r}
+diamonds %>% 
+  cat_xtable(cut, color, chisq = TRUE)
+```
+
+### Modify data
+
+`add_index()` adds a rowwise mean index columns of the specified variables to the dataset. The second argument (first argument if used in a pipe) should be the name of the index column:
+
+```{r}
+diamonds %>%
+  add_index(meanxyz, x, y, z)
+```
+
+Set the argument `type = "sum"` to create a sum index instead:
+
+```{r}
+diamonds %>% 
+  add_index(sumxyz, x, y, z, type = "sum")
+```
+
+`add_label` adds a text label column of a numeric variable to the dataset, for example to be used as labels in plots. 
+
+```{r}
+diamonds %>% 
+  add_label(labelz, z)
+```
+
+By default, `add_label` rounds to two decimal places. You can change this by setting the `decimal.places` argument:
+
+```{r}
+diamonds %>% 
+  add_label(labelz, z, decimal.places = 0)
+```
+
+### Analyze data
+
+#### Correlations
+
+`correlate()` computes correlations coefficients and p-values for all combinations of the specified variables. By default, Pearson correlation coefficients are computed. Set the argument `type = "spearman"` to compute Spearman ranked correlations coefficicents instead.
+
+```{r}
+diamonds %>% 
+  correlate(x, y, z)
+```
+
+#### T-tests
+
+`ttest` computes t-Tests for one grouping variable and one or more test variables. Output statistics include descriptives, t-values, degrees of freedom, p-values, and Cohen's d:
+
+```{r}
+diamonds %>% 
+  filter(cut == "Ideal" | cut == "Fair") %>% 
+  droplevels() %>% 
+  ttest(cut, price, x, y, z)
+```
+
